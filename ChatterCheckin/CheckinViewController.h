@@ -17,6 +17,7 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *location;
 @property (retain, nonatomic) IBOutlet UITextView *status;
+@property (retain, nonatomic) IBOutlet UIButton *selectButton;
 
 - (IBAction)selectPeople:(id)sender;
 

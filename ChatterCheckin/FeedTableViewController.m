@@ -7,6 +7,7 @@
 //
 
 #import "FeedTableViewController.h"
+#import "LoadingViewController.h"
 
 #import "SFRestAPI.h"
 #import "SFRestRequest.h"
@@ -55,7 +56,10 @@
 
     request.path = [NSString stringWithFormat:@"%@/chatter/feeds/record/me/feed-items/", request.path];
     
+    [[LoadingViewController sharedController]addLoadingView:self.navigationController.view];
+    
     [[SFRestAPI sharedInstance] send:request delegate:self];
+    
 }
 
 #pragma mark - SFRestAPIDelegate
@@ -66,6 +70,7 @@
     NSLog(@"%@",records);
     _dataRows = [[NSMutableArray alloc]initWithArray:records];
     [self.tableView reloadData];
+    [[LoadingViewController sharedController]removeLoadingView];
 }
 
 

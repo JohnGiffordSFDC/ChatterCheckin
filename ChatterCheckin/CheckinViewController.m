@@ -9,6 +9,7 @@
 #import "CheckinViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SelectUserViewController.h"
+#import "LoadingViewController.h"
 
 @interface CheckinViewController ()
 
@@ -47,6 +48,16 @@
     [self setupNavbar];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([_selectedUsers count] > 0) {
+        [_selectButton setTitle:[NSString stringWithFormat:@"Select Coworkers (%i)",[_selectedUsers count]] forState:UIControlStateNormal];
+    } else {
+        [_selectButton setTitle:@"Select Coworkers" forState:UIControlStateNormal];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -56,12 +67,14 @@
 - (void)dealloc {
     [_location release];
     [_status release];
+    [_selectButton release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setLocation:nil];
     [self setStatus:nil];
+    [self setSelectButton:nil];
     [super viewDidUnload];
 }
 
@@ -89,13 +102,17 @@
     NSString *test = [_status.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     if (![test isEqualToString:@"Entertext..."] && ![test isEqualToString:@""]) {
+        [_location resignFirstResponder];
+        [_status resignFirstResponder];
+        
+        [[LoadingViewController sharedController]addLoadingView:self.navigationController.view withLabel:@"Posting..."];
         
         NSLog(@"_selectedUsers: %@",_selectedUsers);
         
-        NSString *postString = [NSString stringWithFormat:@"Checked in near %@",_location.text];
+        NSString *postString = [NSString stringWithFormat:@"Checked in near %@ - %@",_location.text,_status.text];
         
         if ([_selectedUsers count] > 0) {
-            postString = [postString stringByAppendingFormat:@" - %@ with: ",_status.text];
+            postString = [postString stringByAppendingFormat:@" with: "];
         }
         
         NSLog(@"%@",postString);
@@ -129,9 +146,10 @@
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Error!"
                           message: @"Please enter a status"
-                          delegate: nil
+                          delegate: self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
+    [alert setTag:111];
     [alert show];
     [alert release];
 }
@@ -143,12 +161,15 @@
     NSLog(@"request:didLoadResponse: #records: %d", records.count);
     NSLog(@"%@",records);
     
+    [[LoadingViewController sharedController]removeLoadingView];
+    
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: @"Success"
                           message: @"Status posted successfully!"
                           delegate: self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
+    [alert setTag:123];
     [alert show];
     [alert release];
 }
@@ -171,8 +192,12 @@
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [_status setText:@"Enter text..."];
-    [_status setTextColor:[UIColor grayColor]];
+    if (alertView.tag == 111) {
+        [_status becomeFirstResponder];
+    } else {
+        [_status setText:@"Enter text..."];
+        [_status setTextColor:[UIColor grayColor]];
+    }
 }
 
 #pragma mark - UITextViewDelegate

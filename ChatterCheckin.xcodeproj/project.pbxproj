@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0FC7A416423EF90072FFC5 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0FC7A216423EF80072FFC5 /* LoadingViewController.m */; };
+		7B0FC7A516423EF90072FFC5 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B0FC7A316423EF90072FFC5 /* LoadingViewController.xib */; };
 		7B23BE541637C37A00B5C407 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B23BE531637C37A00B5C407 /* FeedTableViewCell.m */; };
 		7B23BE571637C3FD00B5C407 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B23BE561637C3FC00B5C407 /* FeedTableViewCell.xib */; };
 		7B23BE611638C65A00B5C407 /* NSString+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B23BE601638C65A00B5C407 /* NSString+JSON.m */; };
@@ -59,6 +61,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B0FC7A116423EF80072FFC5 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
+		7B0FC7A216423EF80072FFC5 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
+		7B0FC7A316423EF90072FFC5 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		7B23BE521637C37A00B5C407 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		7B23BE531637C37A00B5C407 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 		7B23BE561637C3FC00B5C407 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
@@ -532,6 +537,9 @@
 				7B23BE521637C37A00B5C407 /* FeedTableViewCell.h */,
 				7B23BE531637C37A00B5C407 /* FeedTableViewCell.m */,
 				7B23BE561637C3FC00B5C407 /* FeedTableViewCell.xib */,
+				7B0FC7A116423EF80072FFC5 /* LoadingViewController.h */,
+				7B0FC7A216423EF80072FFC5 /* LoadingViewController.m */,
+				7B0FC7A316423EF90072FFC5 /* LoadingViewController.xib */,
 				7BB078BA1623D45500A79141 /* MapViewController.h */,
 				7BB078BB1623D45500A79141 /* MapViewController.m */,
 				7BB078BC1623D45500A79141 /* MapViewController.xib */,
@@ -630,6 +638,7 @@
 				7B23BE671638D5E000B5C407 /* checkin@2x.png in Resources */,
 				7B23BE681638D5E000B5C407 /* feed_icon.png in Resources */,
 				7B23BE691638D5E000B5C407 /* feed_icon@2x.png in Resources */,
+				7B0FC7A516423EF90072FFC5 /* LoadingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +658,7 @@
 				7B23BE541637C37A00B5C407 /* FeedTableViewCell.m in Sources */,
 				7B23BE611638C65A00B5C407 /* NSString+JSON.m in Sources */,
 				7B23BE7016390C5A00B5C407 /* User.m in Sources */,
+				7B0FC7A416423EF90072FFC5 /* LoadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

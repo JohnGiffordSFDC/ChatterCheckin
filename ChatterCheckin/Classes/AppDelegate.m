@@ -60,7 +60,7 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 - (UIViewController*)newRootViewController {
     
-    FeedTableViewController *fvc = [[FeedTableViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
+    FeedTableViewController *fvc = [[FeedTableViewController alloc]initWithNibName:@"FeedTableViewController" bundle:nil];
     [fvc setTitle:@"Status Updates"];
     
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:fvc];

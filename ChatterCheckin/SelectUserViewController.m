@@ -8,6 +8,7 @@
 
 #import "SelectUserViewController.h"
 #import "User.h"
+#import "LoadingViewController.h"
 
 @interface SelectUserViewController ()
 
@@ -35,6 +36,7 @@
     }
 
     [self setTitle:@"Following"];
+    [[LoadingViewController sharedController]addLoadingView:self.navigationController.view];
     [self getUsers];
 }
 
@@ -43,7 +45,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void)getUsers
 {
@@ -95,6 +96,8 @@
     
     if ((NSNull *)_nextPageURL != [NSNull null]) {
         [self getUsers];
+    } else {
+        [[LoadingViewController sharedController]removeLoadingView];
     }
 }
 
