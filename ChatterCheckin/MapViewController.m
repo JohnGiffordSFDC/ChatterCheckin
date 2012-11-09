@@ -113,9 +113,14 @@
 }
 
 - (void)logout {
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [app logout];
-    [app login];
+    UIAlertView *alert =  [[[UIAlertView alloc] initWithTitle:@"Please Confirm!"
+                                                      message:@"Are you sure you want to log out?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:@"Cancel",nil] autorelease];
+    [alert setTag:123];
+    [alert show];
+
 }
 
 - (void)displayError:(NSError*)error
@@ -177,6 +182,17 @@
     alert.message = [error localizedDescription];
     [alert addButtonWithTitle:@"OK"];
     [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [app logout];
+        [app login];
+    }
+    
+    return;
 }
 
 @end

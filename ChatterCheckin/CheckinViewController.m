@@ -109,7 +109,13 @@
         
         NSLog(@"_selectedUsers: %@",_selectedUsers);
         
-        NSString *postString = [NSString stringWithFormat:@"Checked in near %@ - %@",_location.text,_status.text];
+        NSString *postString;
+        
+        if (![[_location.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
+            postString = [NSString stringWithFormat:@"Checked in near %@ - %@",_location.text,_status.text];
+        } else {
+            postString = [NSString stringWithFormat:@"Checked in - %@",_status.text];
+        }
         
         if ([_selectedUsers count] > 0) {
             postString = [postString stringByAppendingFormat:@" with: "];

@@ -48,9 +48,12 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 }
 
 - (NSString*)oauthRedirectURI {
-    return OAuthRedirectURI;
+    return OAuthRedirectURI;    
 }
 
+- (NSString*)oauthLoginDomain {
+    return @"login.salesforce.com";
+}
 
 
 #pragma mark - App lifecycle
