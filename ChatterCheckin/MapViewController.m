@@ -10,6 +10,7 @@
 #import "CheckinViewController.h"
 #import "SFNativeRestAppDelegate.h"
 #import "AppDelegate.h"
+#import "Annotation.h"
 
 @implementation MapViewController
 
@@ -31,7 +32,23 @@
     _mapView.showsUserLocation = YES;
     
     [self setupNavbar];
+
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
     
+    static NSString* ShopAnnotationIdentifier = @"shopAnnotationIdentifier";
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
+    if (!pinView) {
+        pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
+        pinView.pinColor = MKPinAnnotationColorRed;
+        pinView.canShowCallout = YES;
+        pinView.animatesDrop = YES;
+    }
+    return pinView;
 }
 
 - (void)viewDidUnload
@@ -70,8 +87,8 @@
     // we have received our current location, so enable the "Get Current Address" button
     MKCoordinateRegion mapRegion;
     mapRegion.center = self.mapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.01;
-    mapRegion.span.longitudeDelta = 0.01;
+    mapRegion.span.latitudeDelta = 0.05;
+    mapRegion.span.longitudeDelta = 0.05;
     
     [_mapView setRegion:mapRegion animated: YES];
     
@@ -100,6 +117,49 @@
         [self displayCheckin:placemarks];
 
     }];
+}
+
+- (IBAction)locateFriends:(id)sender {
+    id userLocation = [_mapView userLocation];
+    for (NSArray *annotation in _mapView.annotations) {
+        if ((id)annotation != userLocation) {
+            [_mapView removeAnnotation:(id<MKAnnotation>)annotation];
+        }
+    }
+    
+    CLLocationCoordinate2D  ctrpoint;
+    ctrpoint.latitude = 37.78584545;
+    ctrpoint.longitude =-122.40652160;
+    Annotation *addAnnotation = [[Annotation alloc] initWithCoordinate:ctrpoint];
+    [addAnnotation setTitle:@"Prakash"];
+    [addAnnotation setSubtitle:@"Dandapani"];
+    [_mapView addAnnotation:addAnnotation];
+    [addAnnotation release];
+    
+    ctrpoint.latitude = 37.8267;
+    ctrpoint.longitude =-122.4233;
+    addAnnotation = [[Annotation alloc] initWithCoordinate:ctrpoint];
+    [addAnnotation setTitle:@"Jason"];
+    [addAnnotation setSubtitle:@"Barker"];
+    [_mapView addAnnotation:addAnnotation];
+    [addAnnotation release];
+    
+    ctrpoint.latitude = 37.8025;
+    ctrpoint.longitude =-122.4058;
+    addAnnotation = [[Annotation alloc] initWithCoordinate:ctrpoint];
+    [addAnnotation setTitle:@"John"];
+    [addAnnotation setSubtitle:@"Lyne"];
+    [_mapView addAnnotation:addAnnotation];
+    [addAnnotation release];
+    
+    ctrpoint.latitude = 37.7833365;
+    ctrpoint.longitude =-122.4026377;
+    addAnnotation = [[Annotation alloc] initWithCoordinate:ctrpoint];
+    [addAnnotation setTitle:@"Mark"];
+    [addAnnotation setSubtitle:@"Benioff"];
+    [_mapView addAnnotation:addAnnotation];
+    [addAnnotation release];
+    
 }
 
 - (void)displayCheckin:(NSArray *)placemarks

@@ -17,6 +17,7 @@
 		7B23BE681638D5E000B5C407 /* feed_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B23BE641638D5E000B5C407 /* feed_icon.png */; };
 		7B23BE691638D5E000B5C407 /* feed_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B23BE651638D5E000B5C407 /* feed_icon@2x.png */; };
 		7B23BE7016390C5A00B5C407 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B23BE6F16390C5900B5C407 /* User.m */; };
+		7B7E6FA5180E3FF800B6770A /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E6FA4180E3FF800B6770A /* Annotation.m */; };
 		7B8224EB161F8B8C00C39F2E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8224EA161F8B8C00C39F2E /* CoreData.framework */; };
 		7B8224ED161F8B8C00C39F2E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8224EC161F8B8C00C39F2E /* SystemConfiguration.framework */; };
 		7B8224EF161F8B8C00C39F2E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8224EE161F8B8C00C39F2E /* Security.framework */; };
@@ -75,6 +76,8 @@
 		7B23BE651638D5E000B5C407 /* feed_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "feed_icon@2x.png"; path = "Resources/icons/feed_icon@2x.png"; sourceTree = "<group>"; };
 		7B23BE6E16390C5800B5C407 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7B23BE6F16390C5900B5C407 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7B7E6FA3180E3FF800B6770A /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		7B7E6FA4180E3FF800B6770A /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		7B8224E6161F8B8C00C39F2E /* ChatterCheckin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatterCheckin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8224EA161F8B8C00C39F2E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7B8224EC161F8B8C00C39F2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -550,6 +553,8 @@
 				7B23BE601638C65A00B5C407 /* NSString+JSON.m */,
 				7B23BE6E16390C5800B5C407 /* User.h */,
 				7B23BE6F16390C5900B5C407 /* User.m */,
+				7B7E6FA3180E3FF800B6770A /* Annotation.h */,
+				7B7E6FA4180E3FF800B6770A /* Annotation.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 				7B23BE611638C65A00B5C407 /* NSString+JSON.m in Sources */,
 				7B23BE7016390C5A00B5C407 /* User.m in Sources */,
 				7B0FC7A416423EF90072FFC5 /* LoadingViewController.m in Sources */,
+				7B7E6FA5180E3FF800B6770A /* Annotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

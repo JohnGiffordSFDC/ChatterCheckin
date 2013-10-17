@@ -22,6 +22,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *checkinButton;
 
 - (IBAction)performCoordinateGeocode:(id)sender;
+- (IBAction)locateFriends:(id)sender;
 
 @end
 

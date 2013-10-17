@@ -121,14 +121,14 @@
     
     // Configure the cell...
     NSDictionary *feedItem = [_dataRows objectAtIndex:indexPath.row];
-    NSLog(@"feedItem: %@",feedItem);
+    //NSLog(@"feedItem: %@",feedItem);
     
     NSDictionary *body = [feedItem objectForKey:@"body"];
-    NSLog(@"body: %@",body);
+    //NSLog(@"body: %@",body);
     
     NSString *string = [body objectForKey:@"text"];
     cell.feedText.text = [string stringByReplacingAsciiCodes];
-    NSLog(@"text: %@",[body objectForKey:@"text"]);
+    //NSLog(@"text: %@",[body objectForKey:@"text"]);
     
     return cell;
 }
