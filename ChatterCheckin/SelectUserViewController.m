@@ -35,7 +35,7 @@
         _selectedUsers = [[NSMutableArray alloc]initWithCapacity:0];
     }
 
-    [self setTitle:@"Following"];
+    [self setTitle:@"Users"];
     [[LoadingViewController sharedController]addLoadingView:self.navigationController.view];
     [self getUsers];
 }
@@ -50,7 +50,7 @@
 {
 	SFRestRequest* request = [[SFRestAPI sharedInstance] requestForResources];
     
-    NSString *pathString = _nextPageURL != nil ? _nextPageURL : [NSString stringWithFormat:@"%@/chatter/users/me/following?pageSize=20&filterType=005", request.path];
+    NSString *pathString = _nextPageURL != nil ? _nextPageURL : [NSString stringWithFormat:@"%@/chatter/users?pageSize=20", request.path];
     
     request.path = pathString;
     
@@ -66,22 +66,10 @@
     _nextPageURL = [jsonResponse objectForKey:@"nextPageUrl"];
     
     NSArray *records = [jsonResponse objectForKey:@"following"];
-    
-    if (_dataRows == nil) {
-        _dataRows = [[NSMutableArray alloc]initWithCapacity:0];
-    }
-    
-    for (NSDictionary *following in records) {
-        NSDictionary *user = [following objectForKey:@"subject"];
-        NSLog(@"user: %@",user);
-        
-        User *newUser = [[User alloc] init];
-        newUser.fullName = [user objectForKey:@"name"];
-        newUser.userId = [user objectForKey:@"id"];
-        
-        [_dataRows addObject:newUser];
-
-        [newUser release];
+    if(records.count != 0){
+        [self processFollowers:jsonResponse];
+    } else {
+        [self processUsers:jsonResponse];
     }
     
     NSSortDescriptor *sortDescriptor;
@@ -98,6 +86,47 @@
         [self getUsers];
     } else {
         [[LoadingViewController sharedController]removeLoadingView];
+    }
+}
+
+- (void)processUsers:(id)jsonResponse {
+    NSArray *records = [jsonResponse objectForKey:@"users"];
+    
+    if (_dataRows == nil) {
+        _dataRows = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    
+    for (NSDictionary *user in records) {
+        NSLog(@"user: %@",user);
+        
+        User *newUser = [[User alloc] init];
+        newUser.fullName = [user objectForKey:@"name"];
+        newUser.userId = [user objectForKey:@"id"];
+        
+        [_dataRows addObject:newUser];
+        
+        [newUser release];
+    }
+}
+
+- (void)processFollowers:(id)jsonResponse {
+    NSArray *records = [jsonResponse objectForKey:@"following"];
+    
+    if (_dataRows == nil) {
+        _dataRows = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    
+    for (NSDictionary *following in records) {
+        NSDictionary *user = [following objectForKey:@"subject"];
+        NSLog(@"user: %@",user);
+        
+        User *newUser = [[User alloc] init];
+        newUser.fullName = [user objectForKey:@"name"];
+        newUser.userId = [user objectForKey:@"id"];
+        
+        [_dataRows addObject:newUser];
+        
+        [newUser release];
     }
 }
 

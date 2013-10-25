@@ -8,14 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "SFRestAPI.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, SFRestDelegate>
 {
     MKMapView *_mapView;
     UIBarButtonItem *_checkinButton;
     CLLocationManager *_locationManager;
     CLLocationCoordinate2D _currentLocation;
     UIActivityIndicatorView *_spinner;
+    NSString *_nextPageURL;
+    NSDate *_startTime;
+    NSDate *_endTime;
+    int _counter;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
