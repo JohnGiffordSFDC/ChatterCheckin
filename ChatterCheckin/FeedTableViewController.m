@@ -110,8 +110,15 @@
     NSString *bodyString = [body objectForKey:@"text"];
     
     UIFont *font = [UIFont systemFontOfSize:14.0];
-    CGSize size = [bodyString sizeWithFont:font constrainedToSize:CGSizeMake(self.tableView.frame.size.width, 1000) lineBreakMode:NSLineBreakByWordWrapping];
-    return size.height + 40;
+
+    CGSize maxLabelSize = CGSizeMake(self.tableView.frame.size.width, 1000);
+    
+    NSDictionary *stringAttributes = [NSDictionary dictionaryWithObject:font forKey: NSFontAttributeName];
+    
+    CGSize labelSize = [bodyString boundingRectWithSize:maxLabelSize
+                                                options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin
+                                             attributes:stringAttributes context:nil].size;
+    return labelSize.height + 40;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

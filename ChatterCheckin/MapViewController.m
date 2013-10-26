@@ -32,6 +32,7 @@
     _mapView.showsUserLocation = YES;
     
     [self setupNavbar];
+    [self setupTabBar];
 
 }
 
@@ -80,6 +81,12 @@
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
     [self.navigationItem setLeftBarButtonItem:logoutButton];
     [logoutButton release];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:166.0/255.0 green:201.0/255.0 blue:255.0/255.0 alpha:1.0]];
+}
+
+- (void)setupTabBar {
+    [self.tabBarController.tabBar setTintColor:[UIColor darkGrayColor]];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -87,8 +94,8 @@
     // we have received our current location, so enable the "Get Current Address" button
     MKCoordinateRegion mapRegion;
     mapRegion.center = self.mapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.05;
-    mapRegion.span.longitudeDelta = 0.05;
+    mapRegion.span.latitudeDelta = 0.075;
+    mapRegion.span.longitudeDelta = 0.075;
     
     [_mapView setRegion:mapRegion animated: YES];
     

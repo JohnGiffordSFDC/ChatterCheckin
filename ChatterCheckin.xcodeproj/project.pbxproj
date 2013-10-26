@@ -754,6 +754,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChatterCheckin/ChatterCheckin-Prefix.pch";
 				INFOPLIST_FILE = "ChatterCheckin/ChatterCheckin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ChatterCheckin/dependencies/RestKit\"",
@@ -773,6 +774,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChatterCheckin/ChatterCheckin-Prefix.pch";
 				INFOPLIST_FILE = "ChatterCheckin/ChatterCheckin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ChatterCheckin/dependencies/RestKit\"",
